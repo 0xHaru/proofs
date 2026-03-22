@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=1in]{geometry}
+
+% --- Theorem environments ---
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+
+\title{\textbf{Divisibility of the Sum of Three Consecutive Integers}}
+\author{0xHaru}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{definition}[Divisibility]
+    We say $a \mid b$ (\emph{``$a$ divides $b$''}) if there exists some $k \in \mathbb{Z}$ such that
+    \[
+        b = k \cdot a.
+    \]
+\end{definition}
+
+\begin{theorem}
+    The sum of any three consecutive integers is divisible by $3$.
+\end{theorem}
+
+\begin{proof}
+    Let $n \in \mathbb{Z}$, and let $n,\ n+1,\ n+2$ be three consecutive integers. Their sum is
+    \[
+        n + (n+1) + (n+2) = 3n + 3 = 3(n+1).
+    \]
+    Since $n + 1 \in \mathbb{Z}$, taking $k = n + 1$ in Definition~1 yields $3 \mid 3(n+1)$, and hence the sum is divisible by $3$.
+\end{proof}
+
+\end{document}
