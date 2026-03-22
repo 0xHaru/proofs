@@ -5,63 +5,139 @@
 \usepackage{enumitem}
 \geometry{margin=1in}
 
-% Theorem environments
-\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{ }{}
+% ── Theorem environments ──────────────────────────────────────────────────────
 \theoremstyle{plain}
-\newtheorem{axiombase}{Axiom}
 \newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
 
-% Custom axiom environment with label
-\newenvironment{axiom}[1]
-  {\begin{axiombase}[#1]}
-  {\end{axiombase}}
+\theoremstyle{definition}
+\newtheorem{axiomentry}{Axiom}
+\newtheorem{defentry}{Definition}
 
-\title{\textbf{Peano Arithmetic}\\[0.5em]
-       \large Proofs of Associativity and Commutativity of Addition}
-\date{}
+\title{\textbf{Peano Arithmetic}}
+\author{0xHaru}
+\date{\today}
 
 \begin{document}
 \maketitle
 
-% ─────────────────────────────────────────────
+% ─────────────────────────────────────────────────────────────────────────────
 \section*{Peano Axioms}
-% ─────────────────────────────────────────────
+% ─────────────────────────────────────────────────────────────────────────────
 
-Let $\mathbb{N}$ denote the set of natural numbers.
-We use the following two axioms for addition, holding for all
-$a, b \in \mathbb{N}$:
+We first define the \textbf{successor function} $S : \mathbb{N} \to \mathbb{N}$
+by $S(n) = n + 1$. For example, $S(0) = 1$.
 
-\begin{axiom}{A1}
-$a + 0 = a$
-\end{axiom}
+The four Peano axioms are:
 
-\begin{axiom}{A2}
-$a + S(b) = S(a + b)$
-\end{axiom}
+\begin{axiomentry}[A1]
+$0$ is a natural number.
+\end{axiomentry}
 
-We name the successor of $0$: $S(0) = 1$.
+\begin{axiomentry}[A2]
+For every natural number $n$, $S(n)$ is a natural number.
+\end{axiomentry}
+
+\begin{axiomentry}[A3]
+For all natural numbers $n$ and $m$, if $S(n) = S(m)$ then $n = m$.
+\end{axiomentry}
+
+\begin{axiomentry}[A4]
+There does not exist a natural number $n$ such that $S(n) = 0$.
+\end{axiomentry}
+
+\subsection*{Addition}
+
+Addition on $\mathbb{N}$ is defined by the following two rules,
+for all $n, m \in \mathbb{N}$:
+
+\begin{defentry}[D1]
+$n + 0 = n$
+\end{defentry}
+
+\begin{defentry}[D2]
+$n + S(m) = S(n + m)$
+\end{defentry}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{Lemma 1: $S(a) = a + 1$}
+% ─────────────────────────────────────────────────────────────────────────────
 
 \begin{lemma}\label{lem:succ}
-$\forall a \in \mathbb{N}$, $\;S(a) = a + 1$.
+For all $a \in \mathbb{N}$, $\;S(a) = a + 1$.
 \end{lemma}
 
 \begin{proof}
 \[
   S(a)
-    \;\underset{\text{A1}}{=}\; S(a + 0)
-    \;\underset{\text{A2}}{=}\; a + S(0)
-    \;\underset{\text{Def. of 1}}{=}\; a + 1.
+    \;\underset{\mathrm{D1}}{=}\; S(a + 0)
+    \;\underset{\mathrm{D2}}{=}\; a + S(0)
+    \;\underset{\mathrm{Def.\,of\,1}}{=}\; a + 1.
 \]
-
 \end{proof}
 
-% ─────────────────────────────────────────────
-\section*{Proof of Associativity}
-% ─────────────────────────────────────────────
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{Proof that $2 \neq 1$}
+% ─────────────────────────────────────────────────────────────────────────────
 
 \begin{theorem}
-$\forall a, b, c \in \mathbb{N}$,
+$2 \neq 1$, i.e., $S(S(0)) \neq S(0)$.
+\end{theorem}
+
+\begin{proof}
+We want to prove $\neg\bigl(S(S(0)) = S(0)\bigr)$.
+Suppose for contradiction that $S(S(0)) = S(0)$ is true. Then:
+\[
+  S(S(0)) = S(0) \;\underset{\mathrm{A3}}{\implies}\; S(0) = 0.
+\]
+But A4 states that there is no natural number $n$ with $S(n) = 0$,
+so $S(0) = 0$ is impossible. Contradiction.
+\end{proof}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{Lemma 2: $S(a) + b = S(a + b)$}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\begin{lemma}\label{lem:succ-add}
+For all $a, b \in \mathbb{N}$, $\;S(a) + b = S(a + b)$.
+\end{lemma}
+
+\begin{proof}
+By induction on $b$.
+
+\medskip
+\noindent\textbf{Base case} ($b = 0$):
+\[
+\begin{aligned}
+  S(a) + 0 &\;=\; S(a + 0)\\
+  S(a) &\;=\; S(a) &&\text{by D1 (twice)}\\
+  a &\;=\; a &&\text{by A3.}
+\end{aligned}
+\]
+
+\medskip
+\noindent\textbf{Induction Hypothesis (I.H.):} $S(a) + b = S(a + b)$.
+
+\medskip
+\noindent\textbf{Induction Step.} We show $S(a) + S(b) = S(a + S(b))$:
+\[
+\begin{aligned}
+  S(a) + S(b) &\;=\; S\bigl(a + S(b)\bigr)\\
+  S\bigl(S(a) + b\bigr) &\;=\; S\bigl(a + S(b)\bigr) &&\text{by D2}\\
+  S\bigl(S(a) + b\bigr) &\;=\; S\bigl(S(a + b)\bigr) &&\text{by D2}\\
+  S\bigl(S(a + b)\bigr) &\;=\; S\bigl(S(a + b)\bigr) &&\text{by I.H.}\\
+  a + b &\;=\; a + b &&\text{by A3 (twice).}
+\end{aligned}
+\]
+\qedhere
+\end{proof}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{Proof of Associativity}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\begin{theorem}
+For all $a, b, c \in \mathbb{N}$,
 \[
   (a + b) + c \;=\; a + (b + c).
 \]
@@ -74,8 +150,8 @@ By induction on $c$.
 \noindent\textbf{Base case} ($c = 0$):
 \[
   (a + b) + 0
-  \;\underset{\text{A1}}{=}\; a + b
-  \;\underset{\text{A1}}{=}\; a + (b + 0).
+  \;\underset{\mathrm{D1}}{=}\; a + b
+  \;\underset{\mathrm{D1}}{=}\; a + (b + 0).
 \]
 
 \medskip
@@ -88,30 +164,30 @@ $(a + b) + S(c) = a + (b + S(c))$:
 \[
 \begin{aligned}
   (a + b) + S(c)
-    &\;=\; S\!\bigl((a + b) + c\bigr) &&\text{by A2}\\
-    &\;=\; S(a + (b + c))             &&\text{by I.H.}\\
-    &\;=\; a + S(b + c)               &&\text{by A2}\\
-    &\;=\; a + (b + S(c))             &&\text{by A2.}
+    &\;=\; S\bigl((a + b) + c\bigr) &&\text{by D2}\\
+    &\;=\; S\bigl(a + (b + c)\bigr)   &&\text{by I.H.}\\
+    &\;=\; a + S(b + c)               &&\text{by D2}\\
+    &\;=\; a + (b + S(c))             &&\text{by D2.}
 \end{aligned}
 \]
 The I.H.\ holds for $S(c)$. \qedhere
 \end{proof}
 
-% ─────────────────────────────────────────────
+% ─────────────────────────────────────────────────────────────────────────────
 \section*{Proof of the Identity Element}
-% ─────────────────────────────────────────────
+% ─────────────────────────────────────────────────────────────────────────────
 
 \begin{theorem}
-$\forall a \in \mathbb{N}$, $\;0 + a = a$.
+For all $a \in \mathbb{N}$, $\;0 + a = a$.
 \end{theorem}
 
 \begin{proof}
-A1 states that $0$ is a \emph{right} identity ($a + 0 = a$).
+D1 states that $0$ is a \emph{right} identity ($a + 0 = a$).
 We prove that $0$ is also a \emph{left} identity by induction on $a$.
 
 \medskip
 \noindent\textbf{Base case} ($a = 0$):
-$\;0 + 0 = 0\;$ by A1.
+$\;0 + 0 = 0\;$ by D1.
 
 \medskip
 \noindent\textbf{Induction Hypothesis (I.H.):} $0 + a = a$.
@@ -121,36 +197,34 @@ $\;0 + 0 = 0\;$ by A1.
 \[
 \begin{aligned}
   0 + S(a)
-    &\;=\; S(0 + a) &&\text{by A2}\\
+    &\;=\; S(0 + a) &&\text{by D2}\\
     &\;=\; S(a)     &&\text{by I.H.}
 \end{aligned}
 \]
 \qedhere
 \end{proof}
 
-% ─────────────────────────────────────────────
+% ─────────────────────────────────────────────────────────────────────────────
 \section*{Proof of Commutativity}
-% ─────────────────────────────────────────────
+% ─────────────────────────────────────────────────────────────────────────────
 
 \begin{theorem}
-$\forall a, b \in \mathbb{N}$, $\;a + b = b + a$.
+For all $a, b \in \mathbb{N}$, $\;a + b = b + a$.
 \end{theorem}
 
 \begin{proof}
-By induction on $b$.  We first establish the two base cases $b = 0$ and
+By induction on $b$. We first establish the two base cases $b = 0$ and
 $b = S(0) = 1$ (i.e.\ we prove that $0$ and $1$ commute with everything).
 
 % ---------- base case b = 0 ----------
 \medskip
 \noindent\textbf{Base case} ($b = 0$):
 \[
-\begin{aligned}
   a + 0
-    &\;\underset{\text{A1}}{=}\; a
-     \;\underset{\text{Id.}}{=}\; 0 + a.
-\end{aligned}
+  \;\underset{\mathrm{D1}}{=}\; a
+  \;\underset{\text{Identity}}{=}\; 0 + a.
 \]
-The second equality is the left-identity theorem just proved.
+The second equality is the left-identity theorem proved above.
 
 % ---------- base case b = 1 ----------
 \medskip
@@ -162,15 +236,13 @@ We prove $a + 1 = 1 + a$ by induction on $a$
   \item \textbf{Inner base case} ($a = 0$):
   \[
   \begin{aligned}
-    0 + 1
-      &\;=\; 1 + 0 \\
-    1 &\;=\; 1 + 0 &&\text{by the Identity Element}\\
-    1 &\;=\; 1     &&\text{by A1.}
+    0 + 1 &\;=\; 1 + 0 \\
+    1     &\;=\; 1 + 0 &&\text{by the Identity Element}\\
+    1     &\;=\; 1     &&\text{by D1.}
   \end{aligned}
   \]
 
-  \item \textbf{Inner Induction Hypothesis (I.H.):}
-  $a + 1 = 1 + a$.
+  \item \textbf{Inner Induction Hypothesis (I.H.):} $a + 1 = 1 + a$.
 
   \item \textbf{Inner Induction Step.}
   We show $S(a) + 1 = 1 + S(a)$:
@@ -178,11 +250,11 @@ We prove $a + 1 = 1 + a$ by induction on $a$
   \begin{aligned}
     S(a) + 1
       &\;=\; S(a) + S(0) &&\text{by definition of }1\\
-      &\;=\; S(S(a) + 0) &&\text{by A2}\\
-      &\;=\; S((a + 1) + 0) &&\text{by Lemma \ref{lem:succ}}\\
-      &\;=\; S(a + 1)    &&\text{by A1}\\
+      &\;=\; S(S(a) + 0) &&\text{by D2}\\
+      &\;=\; S(S(a)    ) &&\text{by D1}\\
+      &\;=\; S(a + 1)    &&\text{by Lemma~\ref{lem:succ}}\\
       &\;=\; S(1 + a)    &&\text{by I.H.}\\
-      &\;=\; 1 + S(a)    &&\text{by A2.}
+      &\;=\; 1 + S(a)    &&\text{by D2.}
   \end{aligned}
   \]
 \end{itemize}
@@ -198,13 +270,13 @@ We have proved the base case $b = 1$.
 \[
 \begin{aligned}
   a + S(b)
-    &\;=\; a + (b + 1)   &&\text{by Lemma \ref{lem:succ}}\\
+    &\;=\; a + (b + 1)   &&\text{by Lemma~\ref{lem:succ}}\\
     &\;=\; (a + b) + 1   &&\text{by Associativity}\\
     &\;=\; (b + a) + 1   &&\text{by I.H.}\\
     &\;=\; b + (a + 1)   &&\text{by Associativity}\\
     &\;=\; b + (1 + a)   &&\text{by base case }b = 1\\
     &\;=\; (b + 1) + a   &&\text{by Associativity}\\
-    &\;=\; S(b) + a      &&\text{by Lemma \ref{lem:succ}.}
+    &\;=\; S(b) + a      &&\text{by Lemma~\ref{lem:succ}.}
 \end{aligned}
 \]
 \qedhere
