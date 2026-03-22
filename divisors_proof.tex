@@ -29,7 +29,7 @@ Let $d \in \mathbb{N}$ be a divisor of $n \in \mathbb{N}$.  Then at least one of
 or $k = n/d$ is less than or equal to $\sqrt{n}$.
 \end{lemma}
 
-\begin{proof}
+\begin{proof}[Proof 1 (by contradiction)]
 Since $d$ divides $n$, there exists an integer $k$ such that $d \cdot k = n$.
 
 Suppose for contradiction that \emph{both} $d$ and $k$ are strictly greater
@@ -44,6 +44,37 @@ Multiplying these two inequalities gives
 which contradicts $d \cdot k = n$.  Therefore, at least one of $d$ or $k$
 must satisfy $d \leq \sqrt{n}$ (or $k \leq \sqrt{n}$).
 \end{proof}
+
+\smallskip
+
+\begin{proof}[Proof 2 (direct)]
+Since $d$ divides $n$, there exists an integer $k = n/d$ such that
+$d \cdot k = n$.  We consider two cases.
+
+\medskip
+\noindent\textit{Case $d \leq \sqrt{n}$.}\;
+The thesis holds immediately, since $d$ itself is at most $\sqrt{n}$.
+
+\medskip
+\noindent\textit{Case $d > \sqrt{n}$.}\;
+We show that $k < \sqrt{n}$:
+\begin{alignat}{2}
+    d &> \sqrt{n}
+        &\qquad& \text{(assumption of this case)} \notag \\
+    \frac{1}{d} &< \frac{1}{\sqrt{n}}
+        &\qquad& \text{(taking reciprocals of positive quantities reverses the inequality)} \notag \\
+    \frac{n}{d} &< \frac{n}{\sqrt{n}}
+        &\qquad& \text{(multiplying both sides by $n > 0$)} \notag \\
+    k = \frac{n}{d} &< \sqrt{n}
+        &\qquad& \text{(simplifying $n/\sqrt{n} = \sqrt{n}$)} \notag
+\end{alignat}
+
+\medskip
+\noindent In both cases at least one of $d$ or $k$ is less than or equal to
+$\sqrt{n}$.
+\end{proof}
+
+\smallskip
 
 \begin{remark}
 This lemma tells us that every divisor of $n$ either is at most $\sqrt{n}$,
