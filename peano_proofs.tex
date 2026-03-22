@@ -1,0 +1,213 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\geometry{margin=1in}
+
+% Theorem environments
+\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{ }{}
+\theoremstyle{plain}
+\newtheorem{axiombase}{Axiom}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+% Custom axiom environment with label
+\newenvironment{axiom}[1]
+  {\begin{axiombase}[#1]}
+  {\end{axiombase}}
+
+\title{\textbf{Peano Arithmetic}\\[0.5em]
+       \large Proofs of Associativity and Commutativity of Addition}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ─────────────────────────────────────────────
+\section*{Peano Axioms}
+% ─────────────────────────────────────────────
+
+Let $\mathbb{N}$ denote the set of natural numbers.
+We use the following two axioms for addition, holding for all
+$a, b \in \mathbb{N}$:
+
+\begin{axiom}{A1}
+$a + 0 = a$
+\end{axiom}
+
+\begin{axiom}{A2}
+$a + S(b) = S(a + b)$
+\end{axiom}
+
+We name the successor of $0$: $S(0) = 1$.
+
+\begin{lemma}\label{lem:succ}
+$\forall a \in \mathbb{N}$, $\;S(a) = a + 1$.
+\end{lemma}
+
+\begin{proof}
+\[
+  S(a)
+    \;\underset{\text{A1}}{=}\; S(a + 0)
+    \;\underset{\text{A2}}{=}\; a + S(0)
+    \;\underset{\text{Def. of 1}}{=}\; a + 1.
+\]
+
+\end{proof}
+
+% ─────────────────────────────────────────────
+\section*{Proof of Associativity}
+% ─────────────────────────────────────────────
+
+\begin{theorem}
+$\forall a, b, c \in \mathbb{N}$,
+\[
+  (a + b) + c \;=\; a + (b + c).
+\]
+\end{theorem}
+
+\begin{proof}
+By induction on $c$.
+
+\medskip
+\noindent\textbf{Base case} ($c = 0$):
+\[
+  (a + b) + 0
+  \;\underset{\text{A1}}{=}\; a + b
+  \;\underset{\text{A1}}{=}\; a + (b + 0).
+\]
+
+\medskip
+\noindent\textbf{Induction Hypothesis (I.H.):}
+$(a + b) + c = a + (b + c)$.
+
+\medskip
+\noindent\textbf{Induction Step.} We show
+$(a + b) + S(c) = a + (b + S(c))$:
+\[
+\begin{aligned}
+  (a + b) + S(c)
+    &\;=\; S\!\bigl((a + b) + c\bigr) &&\text{by A2}\\
+    &\;=\; S(a + (b + c))             &&\text{by I.H.}\\
+    &\;=\; a + S(b + c)               &&\text{by A2}\\
+    &\;=\; a + (b + S(c))             &&\text{by A2.}
+\end{aligned}
+\]
+The I.H.\ holds for $S(c)$. \qedhere
+\end{proof}
+
+% ─────────────────────────────────────────────
+\section*{Proof of the Identity Element}
+% ─────────────────────────────────────────────
+
+\begin{theorem}
+$\forall a \in \mathbb{N}$, $\;0 + a = a$.
+\end{theorem}
+
+\begin{proof}
+A1 states that $0$ is a \emph{right} identity ($a + 0 = a$).
+We prove that $0$ is also a \emph{left} identity by induction on $a$.
+
+\medskip
+\noindent\textbf{Base case} ($a = 0$):
+$\;0 + 0 = 0\;$ by A1.
+
+\medskip
+\noindent\textbf{Induction Hypothesis (I.H.):} $0 + a = a$.
+
+\medskip
+\noindent\textbf{Induction Step.} We show $0 + S(a) = S(a)$:
+\[
+\begin{aligned}
+  0 + S(a)
+    &\;=\; S(0 + a) &&\text{by A2}\\
+    &\;=\; S(a)     &&\text{by I.H.}
+\end{aligned}
+\]
+\qedhere
+\end{proof}
+
+% ─────────────────────────────────────────────
+\section*{Proof of Commutativity}
+% ─────────────────────────────────────────────
+
+\begin{theorem}
+$\forall a, b \in \mathbb{N}$, $\;a + b = b + a$.
+\end{theorem}
+
+\begin{proof}
+By induction on $b$.  We first establish the two base cases $b = 0$ and
+$b = S(0) = 1$ (i.e.\ we prove that $0$ and $1$ commute with everything).
+
+% ---------- base case b = 0 ----------
+\medskip
+\noindent\textbf{Base case} ($b = 0$):
+\[
+\begin{aligned}
+  a + 0
+    &\;\underset{\text{A1}}{=}\; a
+     \;\underset{\text{Id.}}{=}\; 0 + a.
+\end{aligned}
+\]
+The second equality is the left-identity theorem just proved.
+
+% ---------- base case b = 1 ----------
+\medskip
+\noindent\textbf{Base case} ($b = 1$):
+We prove $a + 1 = 1 + a$ by induction on $a$
+\emph{(an induction proof within an induction proof)}.
+
+\begin{itemize}[leftmargin=2.5em]
+  \item \textbf{Inner base case} ($a = 0$):
+  \[
+  \begin{aligned}
+    0 + 1
+      &\;=\; 1 + 0 \\
+    1 &\;=\; 1 + 0 &&\text{by the Identity Element}\\
+    1 &\;=\; 1     &&\text{by A1.}
+  \end{aligned}
+  \]
+
+  \item \textbf{Inner Induction Hypothesis (I.H.):}
+  $a + 1 = 1 + a$.
+
+  \item \textbf{Inner Induction Step.}
+  We show $S(a) + 1 = 1 + S(a)$:
+  \[
+  \begin{aligned}
+    S(a) + 1
+      &\;=\; S(a) + S(0) &&\text{by definition of }1\\
+      &\;=\; S(S(a) + 0) &&\text{by A2}\\
+      &\;=\; S((a + 1) + 0) &&\text{by Lemma \ref{lem:succ}}\\
+      &\;=\; S(a + 1)    &&\text{by A1}\\
+      &\;=\; S(1 + a)    &&\text{by I.H.}\\
+      &\;=\; 1 + S(a)    &&\text{by A2.}
+  \end{aligned}
+  \]
+\end{itemize}
+
+We have proved the base case $b = 1$.
+
+% ---------- induction hypothesis & step ----------
+\medskip
+\noindent\textbf{Induction Hypothesis (I.H.):} $a + b = b + a$.
+
+\medskip
+\noindent\textbf{Induction Step.} We show $a + S(b) = S(b) + a$:
+\[
+\begin{aligned}
+  a + S(b)
+    &\;=\; a + (b + 1)   &&\text{by Lemma \ref{lem:succ}}\\
+    &\;=\; (a + b) + 1   &&\text{by Associativity}\\
+    &\;=\; (b + a) + 1   &&\text{by I.H.}\\
+    &\;=\; b + (a + 1)   &&\text{by Associativity}\\
+    &\;=\; b + (1 + a)   &&\text{by base case }b = 1\\
+    &\;=\; (b + 1) + a   &&\text{by Associativity}\\
+    &\;=\; S(b) + a      &&\text{by Lemma \ref{lem:succ}.}
+\end{aligned}
+\]
+\qedhere
+\end{proof}
+
+\end{document}

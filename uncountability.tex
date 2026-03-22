@@ -1,0 +1,228 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+
+\geometry{a4paper, margin=2.5cm}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+%% Theorem environments
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+%% Shortcuts
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\iso}{\sim}
+\newcommand{\notiso}{\not\sim}
+
+% ----------------------------------------------------------------
+\title{\textbf{The Uncountability of the Real Numbers}}
+\author{}
+\date{}
+% ----------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+% ================================================================
+\section{Cardinality and Isomorphism}
+% ================================================================
+
+\begin{definition}[Isomorphism]
+Two sets $A$ and $B$ are \textbf{isomorphic} (or \textbf{equinumerous}) if and only if
+there exists a bijection between them. In that case we write $A \sim B$.
+\end{definition}
+
+\begin{definition}[Same Cardinality]
+Given two sets $A$ and $B$, if $A \sim B$ we say that $A$ and $B$ are
+\textbf{equinumerous} or, equivalently, that they have the \textbf{same cardinality}.
+\end{definition}
+
+\begin{definition}[Finite Cardinality]
+For every $n \in \N$ define the set
+\[
+    J_n \;=\;
+    \begin{cases}
+        \emptyset       & \text{if } n = 0,\\
+        \{1,\ldots, n\} & \text{if } n > 0.
+    \end{cases}
+\]
+A set $A$ has \textbf{finite cardinality} if and only if $\exists\, n\in\N$ such that
+$A \sim J_n$.
+\end{definition}
+
+\begin{definition}[Infinite Cardinality]
+A set $A$ has \textbf{infinite cardinality} if and only if $\nexists\, n\in\N$ such
+that $A \sim J_n$ (i.e.\ $A$ does \emph{not} have finite cardinality).
+\end{definition}
+
+% ================================================================
+\section{Countable and Uncountable Sets}
+% ================================================================
+
+\begin{definition}[Countable Set]
+An infinite set $A$ is \textbf{countable} if and only if $A \sim \N$.
+\end{definition}
+
+\begin{example}
+The following infinite sets are countable.
+\begin{itemize}[nosep]
+    \item $\N^{+} = \N \setminus \{0\}$: a bijection $f\colon \N \to \N^{+}$ is given by
+          $f(n)=\mathrm{succ}(n)$.
+    \item The set of even numbers $\mathbb{E}$: a bijection $f\colon \N \to \mathbb{E}$ is given by
+          $f(n)=2n$.
+\end{itemize}
+\end{example}
+
+\begin{definition}[Uncountable Set]
+An infinite set $A$ is \textbf{uncountable} if and only if $A \not\sim \N$.
+\end{definition}
+
+% ================================================================
+\section{\texorpdfstring{$\R$}{R} is Uncountable}
+% ================================================================
+
+\begin{theorem}
+$\R$ is not countable, i.e.\ $\R \not\sim \N$.
+\end{theorem}
+
+\begin{proof}
+The proof proceeds in three steps.
+
+%------------------------------------------------------------------
+\medskip
+\noindent\textbf{Step~1.}\quad $\R \sim (a,b)$ for all $a,b\in\R$ with $a<b$.
+
+\smallskip
+We show geometrically that there exists a bijection between any open interval
+$(a,b)$ and $\R$. Place the segment $[a,b]$ horizontally above the real line.
+Draw the lower semicircle with diameter $[a,b]$ and centre $c$. Given any point
+$x\in\R$, draw the line from $x$ to $c$; it meets the semicircle at a unique point,
+from which a perpendicular to $[a,b]$ yields a unique point in $(a,b)$. This defines
+a bijection $\R\to(a,b)$; choosing $a=0$ and $b=1$ gives $\R\sim(0,1)$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    % Real line
+    \draw[->] (-3.5,0) -- (3.5,0) node[right] {$\R$};
+    \fill (0,0) circle (1.5pt) node[below] {$0$};
+
+    % Diameter [a,b] at height 3, radius 1.8
+    \draw (-1.8,3) -- (1.8,3);
+    \fill (-1.8,3) circle (1.5pt) node[above left]  {$a$};
+    \fill ( 1.8,3) circle (1.5pt) node[above right] {$b$};
+    \fill (   0,3) circle (1.5pt) node[above]        {$c$};
+
+    % Lower semicircle: center (0,3), radius 1.8
+    \draw (-1.8,3) arc (180:360:1.8);
+
+    % Example point p = (-2.8, 0) on R (to the left)
+    \fill (-2.8,0) circle (1.5pt) node[below] {$x$};
+
+    % Dotted line 1: from p=(-2.8,0) to c=(0,3)
+    % Intersection with semicircle: q ~ (-1.228, 1.684)
+    \draw[dotted, thick] (-2.8,0) -- (0,3);
+
+    % Intersection point q on semicircle
+    \fill (-1.228,1.684) circle (1.5pt);
+
+    % Dotted line 2: from q perpendicular (vertical) up to [a,b]
+    \draw[dotted, thick] (-1.228,1.684) -- (-1.228,3);
+
+    % Corresponding point on [a,b]
+    \fill (-1.228,3) circle (1.5pt);
+\end{tikzpicture}
+\end{center}
+
+\smallskip
+\noindent\textit{How the bijection works in practice.}
+\begin{itemize}[nosep]
+    \item \textbf{From $\R$ to $(a,b)$:} pick any point $x$ on the real line.
+          Draw the straight line from $x$ to the centre $c$; it crosses the
+          semicircle at exactly one point. From that crossing point, drop a
+          vertical line up to the segment $[a,b]$: the point where it lands is
+          the image of $x$ in $(a,b)$.
+
+    \item \textbf{From $(a,b)$ to $\R$:} pick any point $p$ in $(a,b)$.
+          Drop a vertical line from $p$ down to the semicircle; it meets the
+          arc at exactly one point. Draw the straight line from that arc point
+          through $c$ and extend it until it hits the real line: that
+          intersection is the image of $p$ in $\R$.
+\end{itemize}
+
+%------------------------------------------------------------------
+\medskip
+\noindent\textbf{Step~2.}\quad $\N \not\sim (0,1)$\quad(\emph{by diagonalisation}).
+
+\smallskip
+Suppose, for contradiction, that $(0,1)\sim\N$. Under this hypothesis,
+$(0,1)$ can be listed exhaustively.  Consider then \emph{any} exhaustive list of
+elements of $(0,1)$:
+\[
+\begin{array}{lllllll}
+  0, & \underline{a_{00}} & a_{01} & a_{02} & a_{03} & \cdots \\[2pt]
+  0, & a_{10} & \underline{a_{11}} & a_{12} & a_{13} & \cdots \\[2pt]
+  0, & a_{20} & a_{21} & \underline{a_{22}} & a_{23} & \cdots \\[2pt]
+     & \vdots
+\end{array}
+\]
+where $a_{ij}\in\{0,1,\ldots,9\}$ is the $j$-th decimal digit of the $i$-th
+element in the list.
+
+Construct the real number $0{,}\,c_0\,c_1\,c_2\,\ldots$ by setting
+\[
+    c_i \;=\;
+    \begin{cases}
+        2 & \text{if } a_{ii} \neq 2,\\
+        3 & \text{if } a_{ii} = 2.
+    \end{cases}
+\]
+
+However, $0{,}\,c_0\,c_1\,c_2\,\ldots$ does \emph{not} appear in the list.
+Indeed, for every $i\geq 0$:
+\begin{align*}
+    a_{00} \neq c_0 \quad&\Longrightarrow\quad
+    0{,}\,c_0c_1c_2\ldots \;\neq\; 0{,}\,a_{00}\,a_{01}\,a_{02}\,\ldots\\
+    a_{11} \neq c_1 \quad&\Longrightarrow\quad
+    0{,}\,c_0c_1c_2\ldots \;\neq\; 0{,}\,a_{10}\,a_{11}\,a_{12}\,\ldots\\
+    a_{22} \neq c_2 \quad&\Longrightarrow\quad
+    0{,}\,c_0c_1c_2\ldots \;\neq\; 0{,}\,a_{20}\,a_{21}\,a_{22}\,\ldots\\
+    &\;\vdots
+\end{align*}
+The $i$-th digit of $0{,}\,c_0c_1c_2\ldots$ always differs from the $i$-th digit of
+the $i$-th element in the list, so the constructed number differs from \emph{every}
+element in the list.
+
+Therefore the list is \textbf{not exhaustive} --- a contradiction. $\bot$
+
+%------------------------------------------------------------------
+\medskip
+\noindent\textbf{Step~3.}\quad $\R \not\sim \N$.
+
+\smallskip
+By Step~1, $\R \sim (0,1)$; by Step~2, $(0,1)\not\sim\N$. By the transitivity
+of $\sim$ it follows that
+\[
+    \R \;\not\sim\; \N,
+\]
+i.e.\ $\R$ is uncountable.
+\end{proof}
+
+\end{document}

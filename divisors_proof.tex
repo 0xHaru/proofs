@@ -1,0 +1,232 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\geometry{a4paper, margin=2.5cm}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title{\textbf{Bounds on the Number of Divisors}}
+\author{}
+\date{}
+
+% ---------------------------------------------------------------
+\begin{document}
+\maketitle
+
+% ===============================================================
+\section*{Preliminary Lemma}
+% ===============================================================
+
+\begin{lemma}
+Let $d \in \mathbb{N}$ be a divisor of $n \in \mathbb{N}$.  Then at least one of $d$
+or $k = n/d$ is less than or equal to $\sqrt{n}$.
+\end{lemma}
+
+\begin{proof}
+Since $d$ divides $n$, there exists an integer $k$ such that $d \cdot k = n$.
+
+Suppose for contradiction that \emph{both} $d$ and $k$ are strictly greater
+than $\sqrt{n}$:
+\[
+    d > \sqrt{n} \quad \text{and} \quad k > \sqrt{n}.
+\]
+Multiplying these two inequalities gives
+\[
+    d \cdot k > \sqrt{n} \cdot \sqrt{n} = n,
+\]
+which contradicts $d \cdot k = n$.  Therefore, at least one of $d$ or $k$
+must satisfy $d \leq \sqrt{n}$ (or $k \leq \sqrt{n}$).
+\end{proof}
+
+\begin{remark}
+This lemma tells us that every divisor of $n$ either is at most $\sqrt{n}$,
+or its complementary divisor $n/d$ is at most $\sqrt{n}$.  In other words,
+to enumerate \emph{all} divisors of $n$ it suffices to check only the
+natural numbers up to $\sqrt{n}$.
+\end{remark}
+
+% ===============================================================
+\section*{Main Theorem}
+% ===============================================================
+
+\begin{theorem}
+For every $n \in \mathbb{N}$, the number of divisors $d(n)$ satisfies
+\[
+    d(n) \;\leq\; 2\sqrt{n}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $D$ denote the set of all positive divisors of $n$.  By definition
+$|D| = d(n)$.
+
+\smallskip
+\noindent\textbf{Partition of $D$.}\;
+We partition $D$ into three pairwise disjoint subsets:
+\begin{align*}
+    S_1 &= \bigl\{\, d \in D \;:\; d < \sqrt{n} \,\bigr\}, \\
+    S_2 &= \bigl\{\, d \in D \;:\; d = \sqrt{n} \,\bigr\}, \\
+    S_3 &= \bigl\{\, d \in D \;:\; d > \sqrt{n} \,\bigr\}.
+\end{align*}
+Since $S_1, S_2, S_3$ cover $D$ without overlap:
+\[
+    d(n) = |S_1| + |S_2| + |S_3|.
+\]
+
+% -----------------------------------------------------------
+\bigskip
+\noindent\textbf{Step 1: A bijection between $S_1$ and $S_3$.}
+
+We claim $|S_1| = |S_3|$.  We prove this by defining a function
+\[
+    \varphi \;:\; S_1 \;\longrightarrow\; S_3, \qquad \varphi(d) = \frac{n}{d},
+\]
+and showing it is a bijection.  Recall that $\varphi : A \to B$ is a bijection
+if and only if it is both \emph{injective} and \emph{surjective}:
+\begin{itemize}
+    \item \textbf{Injective:} $\forall\, a, b \in A,\quad \varphi(a) = \varphi(b) \implies a = b$.
+    \item \textbf{Surjective:} $\forall\, b \in B,\quad \exists\, a \in A \text{ such that } \varphi(a) = b$.
+\end{itemize}
+Before proving these properties, we must first check that $\varphi$ is
+\emph{well-defined}, i.e.\ that $\varphi(d) \in S_3$ for every $d \in S_1$.
+
+\medskip
+\emph{Well-definedness.}\;
+Let $d \in S_1$ be arbitrary. We must show $\varphi(d) = n/d \in S_3$, i.e.\
+that $n/d$ is a divisor of $n$ with $n/d > \sqrt{n}$.
+\begin{itemize}
+    \item \emph{$n/d$ is a natural number and divides $n$:} Since $d \in S_1
+          \subseteq D$, $d$ divides $n$, so $n/d \in \mathbb{N}$ and
+          $d \cdot (n/d) = n$.
+    \item \emph{$n/d > \sqrt{n}$:} Since $d \in S_1$ we have $d < \sqrt{n}$,
+          and therefore:
+          \begin{alignat}{2}
+              d &< \sqrt{n}
+                  &\qquad& \text{(since } d \in S_1\text{)} \notag \\
+              \frac{1}{d} &> \frac{1}{\sqrt{n}}
+                  &\qquad& \text{(taking reciprocals of positive quantities reverses the inequality)} \notag \\
+              \frac{n}{d} &> \frac{n}{\sqrt{n}}
+                  &\qquad& \text{(multiplying both sides by } n > 0\text{)} \notag \\
+              \frac{n}{d} &> \sqrt{n}
+                  &\qquad& \text{(simplifying } n/\sqrt{n} = \sqrt{n}\text{)} \notag
+          \end{alignat}
+\end{itemize}
+Hence $\varphi(d) \in S_3$ for all $d \in S_1$, so $\varphi$ is well-defined
+as a function $S_1 \to S_3$.
+
+\medskip
+\emph{Injectivity.}\;
+We must show: $\forall\, a, b \in S_1,\ \varphi(a) = \varphi(b) \implies a =
+b$.  Suppose $a, b \in S_1$ satisfy $\varphi(a) = \varphi(b)$.  Then
+\[
+    \frac{n}{a} = \frac{n}{b}
+    \;\implies\;
+    \frac{a}{n} = \frac{b}{n}
+    \;\implies\;
+    a = b.
+\]
+Hence $\varphi$ is injective.
+
+\medskip
+\emph{Surjectivity.}\;
+We must show: $\forall\, y \in S_3,\ \exists\, x \in S_1$ such that
+$\varphi(x) = y$.  Let $y \in S_3$ be arbitrary; this means $y$ divides $n$
+and $y > \sqrt{n}$.  We claim that $x := n/y$ is the required preimage. \footnote{
+\[
+    \varphi(x) = \frac{n}{x} = y
+    \;\implies\;
+    x = \frac{n}{y}
+\]
+}
+
+First, $x \in S_1$: since $y \in S_3 \subseteq D$, $y$ divides $n$, so $x =
+n/y \in \mathbb{N}$ and $x$ divides $n$.  Moreover:
+\begin{alignat}{2}
+    y &> \sqrt{n}
+        &\qquad& \text{(since } y \in S_3\text{)} \notag \\
+    \frac{1}{y} &< \frac{1}{\sqrt{n}}
+        &\qquad& \text{(taking reciprocals of positive quantities reverses the inequality)} \notag \\
+    \frac{n}{y} &< \frac{n}{\sqrt{n}}
+        &\qquad& \text{(multiplying both sides by } n > 0\text{)} \notag \\
+    x = \frac{n}{y} &< \sqrt{n}
+        &\qquad& \text{(simplifying } n/\sqrt{n} = \sqrt{n}\text{)} \notag
+\end{alignat}
+Hence $x < \sqrt{n}$, so $x \in S_1$.
+
+Second, $\varphi(x) = y$:
+\[
+    \varphi(x) = \varphi\!\left(\frac{n}{y}\right)
+               = \frac{n}{\dfrac{n}{y}}
+               = n \cdot \frac{y}{n}
+               = y.
+\]
+Since $y \in S_3$ was arbitrary, $\varphi$ is surjective.
+
+\medskip
+Since $\varphi$ is a well-defined bijection from $S_1$ to $S_3$, it follows
+that $|S_1| = |S_3|$.
+
+% -----------------------------------------------------------
+\bigskip
+\noindent\textbf{Step 2: Bounding $|S_1|$.}
+
+Let $A(n) := |S_1|$.  Using $|S_1| = |S_3|$, we rewrite the divisor count as
+\[
+    d(n) = A(n) + |S_2| + A(n).
+\]
+By definition, $A(n)$ counts all naturals in $S_1$, each of which satisfies
+$d < \sqrt{n}$.  The number of positive integers strictly less than $\sqrt{n}$
+is at most $\lfloor\sqrt{n}\rfloor$, and $\lfloor\sqrt{n}\rfloor < \sqrt{n}$
+always holds.\footnote{%
+  If $n$ is not a perfect square then $\sqrt{n}$ is irrational, so
+  $\lfloor\sqrt{n}\rfloor < \sqrt{n}$ directly.
+  If $n$ is a perfect square, the positive integers strictly less than
+  $\sqrt{n}$ number at most $\sqrt{n}-1 < \sqrt{n}$.}
+Therefore
+\[
+    A(n) < \sqrt{n}.
+\]
+
+% -----------------------------------------------------------
+\bigskip
+\noindent\textbf{Step 3: Final bounds.}
+
+We distinguish two cases.
+
+\medskip
+\noindent\textit{Case A: $n$ is not a perfect square.}
+
+$\sqrt{n} \notin \mathbb{N}$, so no divisor of $n$ can equal $\sqrt{n}$; hence
+$S_2 = \varnothing$ and $|S_2| = 0$.  Therefore
+\[
+    d(n) = A(n) + 0 + A(n) = 2A(n) < 2\sqrt{n}.
+\]
+
+\medskip
+\noindent\textit{Case B: $n$ is a perfect square.}
+
+$\sqrt{n} \in \mathbb{N}$ and $\sqrt{n}$ divides $n$ (since
+$\sqrt{n} \cdot \sqrt{n} = n$).  Thus $S_2$ contains exactly one element,
+namely $\sqrt{n}$, so $|S_2| = 1$.  Therefore
+\[
+    d(n) = A(n) + 1 + A(n) = 2A(n) + 1 < 2\sqrt{n} + 1.
+\]
+Since $n$ is a perfect square both $d(n)$ and $2\sqrt{n}$ are integers, so
+the strict inequality with $2\sqrt{n}+1$ is equivalent to
+\[
+    d(n) \leq 2\sqrt{n}.
+\]
+
+\medskip
+\noindent In both cases we obtain $d(n) \leq 2\sqrt{n}$, which completes the
+proof.
+\end{proof}
+
+\end{document}
