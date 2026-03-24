@@ -115,94 +115,50 @@ Since $S_1, S_2, S_3$ cover $D$ without overlap:
 \bigskip
 \noindent\textbf{Step 1: A bijection between $S_1$ and $S_3$.}
 
-We claim $|S_1| = |S_3|$.  We prove this by defining a function
+We show $|S_1| = |S_3|$ via the map
 \[
-    \varphi \;:\; S_1 \;\longrightarrow\; S_3, \qquad \varphi(d) = \frac{n}{d},
+    \varphi \;:\; S_1 \;\longrightarrow\; S_3, \qquad \varphi(d) = \frac{n}{d}.
 \]
-and showing it is a bijection.  Recall that $\varphi : A \to B$ is a bijection
-if and only if it is both \emph{injective} and \emph{surjective}:
+The key observation is that $\varphi$ is an \emph{involution}: applying it
+twice returns the original element,
+\[
+    \varphi\bigl(\varphi(d)\bigr) = \varphi\!\left(\frac{n}{d}\right)
+    = \frac{n}{n/d} = d.
+\]
+Because of this, $\varphi$ is its own inverse; to conclude it is a bijection
+between $S_1$ and $S_3$ it suffices to check that it maps each set into the
+other.
+
+\medskip
+\emph{$\varphi$ maps $S_1$ into $S_3$.}\;
+Let $d \in S_1$, so $d$ divides $n$ and $d < \sqrt{n}$.
 \begin{itemize}
-    \item \textbf{Injective:} $\forall\, a, b \in A,\quad \varphi(a) = \varphi(b) \implies a = b$.
-    \item \textbf{Surjective:} $\forall\, b \in B,\quad \exists\, a \in A \text{ such that } \varphi(a) = b$.
+    \item \emph{$n/d$ is a divisor of $n$:} Since $d \mid n$, we have
+          $n/d \in \mathbb{N}$ and $d \cdot (n/d) = n$, so $n/d$ divides $n$.
+    \item \emph{$n/d > \sqrt{n}$:} Since $d$ and $\sqrt{n}$ are positive,
+          taking reciprocals of $d < \sqrt{n}$ reverses the inequality to
+          $1/d > 1/\sqrt{n}$; multiplying both sides by $n > 0$ then gives
+          $n/d > n/\sqrt{n} = \sqrt{n}$.
 \end{itemize}
-Before proving these properties, we must first check that $\varphi$ is
-\emph{well-defined}, i.e.\ that $\varphi(d) \in S_3$ for every $d \in S_1$.
+Hence $\varphi(d) = n/d \in S_3$.
 
 \medskip
-\emph{Well-definedness.}\;
-Let $d \in S_1$ be arbitrary. We must show $\varphi(d) = n/d \in S_3$, i.e.\
-that $n/d$ is a divisor of $n$ with $n/d > \sqrt{n}$.
+\emph{$\varphi$ maps $S_3$ into $S_1$.}\;
+Let $d \in S_3$, so $d$ divides $n$ and $d > \sqrt{n}$.
 \begin{itemize}
-    \item \emph{$n/d$ is a natural number and divides $n$:} Since $d \in S_1
-          \subseteq D$, $d$ divides $n$, so $n/d \in \mathbb{N}$ and
-          $d \cdot (n/d) = n$.
-    \item \emph{$n/d > \sqrt{n}$:} Since $d \in S_1$ we have $d < \sqrt{n}$,
-          and therefore:
-          \begin{alignat}{2}
-              d &< \sqrt{n}
-                  &\qquad& \text{(since } d \in S_1\text{)} \notag \\
-              \frac{1}{d} &> \frac{1}{\sqrt{n}}
-                  &\qquad& \text{(taking reciprocals of positive quantities reverses the inequality)} \notag \\
-              \frac{n}{d} &> \frac{n}{\sqrt{n}}
-                  &\qquad& \text{(multiplying both sides by } n > 0\text{)} \notag \\
-              \frac{n}{d} &> \sqrt{n}
-                  &\qquad& \text{(simplifying } n/\sqrt{n} = \sqrt{n}\text{)} \notag
-          \end{alignat}
+    \item \emph{$n/d$ is a divisor of $n$:} Since $d \mid n$, we have
+          $n/d \in \mathbb{N}$ and $d \cdot (n/d) = n$, so $n/d$ divides $n$.
+    \item \emph{$n/d < \sqrt{n}$:} Since $d$ and $\sqrt{n}$ are positive,
+          taking reciprocals of $d > \sqrt{n}$ reverses the inequality to
+          $1/d < 1/\sqrt{n}$; multiplying both sides by $n > 0$ then gives
+          $n/d < n/\sqrt{n} = \sqrt{n}$.
 \end{itemize}
-Hence $\varphi(d) \in S_3$ for all $d \in S_1$, so $\varphi$ is well-defined
-as a function $S_1 \to S_3$.
+Hence $\varphi(d) = n/d \in S_1$.
 
 \medskip
-\emph{Injectivity.}\;
-We must show: $\forall\, a, b \in S_1,\ \varphi(a) = \varphi(b) \implies a =
-b$.  Suppose $a, b \in S_1$ satisfy $\varphi(a) = \varphi(b)$.  Then
-\[
-    \frac{n}{a} = \frac{n}{b}
-    \;\implies\;
-    \frac{a}{n} = \frac{b}{n}
-    \;\implies\;
-    a = b.
-\]
-Hence $\varphi$ is injective.
-
-\medskip
-\emph{Surjectivity.}\;
-We must show: $\forall\, y \in S_3,\ \exists\, x \in S_1$ such that
-$\varphi(x) = y$.  Let $y \in S_3$ be arbitrary; this means $y$ divides $n$
-and $y > \sqrt{n}$.  We claim that $x := n/y$ is the required preimage. \footnote{
-\[
-    \varphi(x) = \frac{n}{x} = y
-    \;\implies\;
-    x = \frac{n}{y}
-\]
-}
-
-First, $x \in S_1$: since $y \in S_3 \subseteq D$, $y$ divides $n$, so $x =
-n/y \in \mathbb{N}$ and $x$ divides $n$.  Moreover:
-\begin{alignat}{2}
-    y &> \sqrt{n}
-        &\qquad& \text{(since } y \in S_3\text{)} \notag \\
-    \frac{1}{y} &< \frac{1}{\sqrt{n}}
-        &\qquad& \text{(taking reciprocals of positive quantities reverses the inequality)} \notag \\
-    \frac{n}{y} &< \frac{n}{\sqrt{n}}
-        &\qquad& \text{(multiplying both sides by } n > 0\text{)} \notag \\
-    x = \frac{n}{y} &< \sqrt{n}
-        &\qquad& \text{(simplifying } n/\sqrt{n} = \sqrt{n}\text{)} \notag
-\end{alignat}
-Hence $x < \sqrt{n}$, so $x \in S_1$.
-
-Second, $\varphi(x) = y$:
-\[
-    \varphi(x) = \varphi\!\left(\frac{n}{y}\right)
-               = \frac{n}{\dfrac{n}{y}}
-               = n \cdot \frac{y}{n}
-               = y.
-\]
-Since $y \in S_3$ was arbitrary, $\varphi$ is surjective.
-
-\medskip
-Since $\varphi$ is a well-defined bijection from $S_1$ to $S_3$, it follows
-that $|S_1| = |S_3|$.
+Since $\varphi$ maps $S_1$ into $S_3$ and $S_3$ into $S_1$, and since
+$\varphi \circ \varphi = \mathrm{id}$, the map $\varphi$ is a bijection
+between $S_1$ and $S_3$.  Therefore $|S_1| = |S_3|$.
 
 % -----------------------------------------------------------
 \bigskip
