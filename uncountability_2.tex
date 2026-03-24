@@ -190,7 +190,7 @@ and the range of the map is precisely the open interval $(a,b)$.
 
 %------------------------------------------------------------------
 \medskip
-\noindent\textbf{Step~2.}\quad $\N \not\sim (0,1)$\quad(\emph{by diagonalisation}).
+\noindent\textbf{Step~2.}\quad $\N \not\sim (0,1)$\quad(\emph{by diagonalization}).
 
 \smallskip
 Suppose, for contradiction, that $(0,1)\sim\N$. Under this hypothesis,
@@ -207,26 +207,26 @@ elements of $(0,1)$:
 where $a_{ij}\in\{0,1,\ldots,9\}$ is the $j$-th decimal digit of the $i$-th
 element in the list.
 
-Construct the real number $0{,}\,c_0\,c_1\,c_2\,\ldots$ by setting
+Construct the real number $0{,}\,d_0\,d_1\,d_2\,\ldots$ by setting
 \[
-    c_i \;=\;
+    d_i \;=\;
     \begin{cases}
         2 & \text{if } a_{ii} \neq 2,\\
         3 & \text{if } a_{ii} = 2.
     \end{cases}
 \]
-Since every digit $c_i$ belongs to $\{2,3\}$, the constructed number lies in $(0,1)$.
+Since every digit $d_i$ belongs to $\{2,3\}$, the constructed number lies in $(0,1)$.
 We claim, however, that it does \emph{not} appear in the list:
 \begin{align*}
-    c_0 \neq a_{00} \quad&\Longrightarrow\quad
-    0{,}\,c_0c_1c_2\ldots \;\neq\; 0{,}\,a_{00}\,a_{01}\,a_{02}\,\ldots\\
-    c_1 \neq a_{11} \quad&\Longrightarrow\quad
-    0{,}\,c_0c_1c_2\ldots \;\neq\; 0{,}\,a_{10}\,a_{11}\,a_{12}\,\ldots\\
-    c_2 \neq a_{22} \quad&\Longrightarrow\quad
-    0{,}\,c_0c_1c_2\ldots \;\neq\; 0{,}\,a_{20}\,a_{21}\,a_{22}\,\ldots\\
+    d_0 \neq a_{00} \quad&\Longrightarrow\quad
+    0{,}\,d_0d_1d_2\ldots \;\neq\; 0{,}\,a_{00}\,a_{01}\,a_{02}\,\ldots\\
+    d_1 \neq a_{11} \quad&\Longrightarrow\quad
+    0{,}\,d_0d_1d_2\ldots \;\neq\; 0{,}\,a_{10}\,a_{11}\,a_{12}\,\ldots\\
+    d_2 \neq a_{22} \quad&\Longrightarrow\quad
+    0{,}\,d_0d_1d_2\ldots \;\neq\; 0{,}\,a_{20}\,a_{21}\,a_{22}\,\ldots\\
     &\;\vdots
 \end{align*}
-The $i$-th digit of $0{,}\,c_0c_1c_2\ldots$ always differs from the $i$-th digit of
+The $i$-th digit of $0{,}\,d_0d_1d_2\ldots$ always differs from the $i$-th digit of
 the $i$-th element in the list, so the constructed number differs from \emph{every}
 element in the list.
 
@@ -249,7 +249,7 @@ i.e.\ $\R$ is uncountable.
 \section{Cantor's Diagonal Argument in Simpler Terms}
 % ================================================================
 
-This section presents the diagonalisation of Step~2 in simpler terms.
+This section presents the diagonalization of Step~2 in simpler terms.
 
 \medskip
 \noindent\textbf{The assumption.}\quad Suppose one asserts that every real number
@@ -314,13 +314,13 @@ entry in its $n$-th decimal digit. It therefore cannot coincide with any entry i
 the list, which contradicts the assumption that the enumeration was exhaustive.
 
 \medskip
-\noindent\textbf{The conclusion.}\quad Since this construction applies to any
+\noindent\textbf{The conclusion.}\quad Since this construction applies to \emph{any}
 proposed enumeration of $(0,1)$, no bijection between $\N$ and $(0,1)$ can
-exist --- and hence, by Step~1, no bijection between $\N$ and $\R$ can exist.
+exist, and hence, by Step~1, no bijection between $\N$ and $\R$ can exist.
 The set of real numbers is therefore uncountable.
 
 \medskip
 \noindent This argument is known as \textbf{Cantor's diagonal argument}, after
-Georg Cantor (1845--1918), who published it in 1891.
+Georg Cantor, who published it in 1891.
 
 \end{document}
