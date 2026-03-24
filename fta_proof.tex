@@ -12,15 +12,13 @@
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
 
+\title{\textbf{The Fundamental Theorem of Arithmetic}}
+\author{0xHaru}
+\date{\today}
+
 % ── Document ──────────────────────────────────────────────────────────────────
 \begin{document}
-
-\begin{center}
-    {\LARGE \textbf{The Fundamental Theorem of Arithmetic}}\\[0.4em]
-    {\large A proof via Euclid's Lemma}
-\end{center}
-
-\vspace{1em}
+\maketitle
 
 \begin{remark}
 $1$ is not a prime number.
@@ -30,7 +28,7 @@ $1$ is not a prime number.
 
 % ── Euclid's Lemma ───────────────────────────────────────────────────────────
 \begin{lemma}[Euclid's Lemma]
-If a prime $p$ divides the product $ab$ of two integers $a$ and $b$, then $p$
+If a prime $p$ divides the product $a \cdot b$ of two integers $a$ and $b$, then $p$
 must divide at least one of those integers $a$ or $b$.
 \end{lemma}
 
@@ -68,11 +66,11 @@ cases.
 
   \item \emph{Otherwise,} there are integers $a$ and $b$ where $m = a \cdot b$
         and $1 < a \leq b < m$. By the induction hypothesis,
-        $a = p_1 \cdot p_2 \cdots p_j$ and $b = q_1 \cdot q_2 \cdots q_k$
+        $a = p_1 \cdot p_2 \cdot \ldots \cdot p_j$ and $b = q_1 \cdot q_2 \cdot \ldots \cdot q_k$
         are products of primes. But then
         \[
             m \;=\; a \cdot b
-              \;=\; p_1 \cdot p_2 \cdots p_j \cdot q_1 \cdot q_2 \cdots q_k
+              \;=\; p_1 \cdot p_2 \cdot \ldots \cdot p_j \cdot q_1 \cdot q_2 \cdot \ldots \cdot q_k
         \]
         is also a product of primes, completing the induction.
         \qedhere
@@ -86,12 +84,12 @@ cases.
 Suppose, for the sake of contradiction, that there exists an integer that has
 two distinct prime factorizations. Let $n$ be the least such integer, and write
 \[
-    n \;=\; p_1 \cdot p_2 \cdots p_j \;=\; q_1 \cdot q_2 \cdots q_k,
+    n \;=\; p_1 \cdot p_2 \cdot \ldots \cdot p_j \;=\; q_1 \cdot q_2 \cdot \ldots \cdot q_k,
 \]
 where each $p_i$ and each $q_i$ is prime.
 
 \medskip
-We see that $p_1$ divides $q_1 \cdot q_2 \cdots q_k$, so $p_1$ divides some
+We see that $p_1$ divides $q_1 \cdot q_2 \cdot \ldots \cdot q_k$, so $p_1$ divides some
 $q_i$ by Euclid's Lemma. Without loss of generality, say $p_1$ divides $q_1$.
 Since $p_1$ and $q_1$ are both prime, it follows that $p_1 = q_1$.
 
@@ -99,7 +97,7 @@ Since $p_1$ and $q_1$ are both prime, it follows that $p_1 = q_1$.
 Returning to our factorizations of $n$, we may cancel these two factors to
 conclude that
 \[
-    p_2 \cdots p_j \;=\; q_2 \cdots q_k.
+    p_2 \cdot \ldots \cdot p_j \;=\; q_2 \cdot \ldots \cdot q_k.
 \]
 We now have two distinct prime factorizations of some integer strictly smaller
 than $n$, which contradicts the minimality of $n$.
