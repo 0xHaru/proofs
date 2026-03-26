@@ -1,0 +1,54 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+\title{\textbf{There Are Infinitely Many Prime Numbers}}
+\author{0xHaru}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{theorem}[Euclid's theorem]
+The set of prime numbers is infinite.
+\end{theorem}
+
+\begin{proof}
+Suppose for contradiction that there are only finitely many primes, say $k$ in
+total. List them as $p_1, p_2, p_3, \ldots, p_k$, multiply them all together,
+and consider the number that follows their product:
+\[
+    n = p_1 \times p_2 \times p_3 \times \cdots \times p_k + 1.
+\]
+
+\textbf{Case 1: $n$ is prime.} Then we have found a prime not in the list of all
+$p_i$ --- a contradiction, since the list was supposed to be exhaustive.
+
+\medskip
+
+\textbf{Case 2: $n$ is composite.} By the Fundamental Theorem of Arithmetic,
+$n$ must be a product of primes. However, none of the primes in the list can be
+a divisor of $n$, because the remainder of every such division is $1$. It
+follows that the prime factors of $n$ are primes outside the list --- again a
+contradiction.
+
+\medskip
+
+Since both cases lead to a contradiction, the assumption that there are finitely
+many primes is false. Therefore, the primes are infinite.
+\end{proof}
+
+\begin{remark}[Why the remainder is always $1$]
+Think of it this way: the product $p_1 \times p_2 \times \cdots \times p_k$ is
+a multiple of every $p_i$ in the list --- each one is literally baked into the
+product as a factor. A multiple of $p_i$ is, by definition, something that
+$p_i$ divides exactly, leaving no remainder. Now $n$ is obtained by adding $1$ to that product, stepping exactly one unit
+past a number that $p_i$ divides cleanly. So no matter which $p_i$ you try
+to divide by you always get a remainder of $1$.
+\end{remark}
+
+\end{document}
