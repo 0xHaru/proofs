@@ -55,4 +55,28 @@ $\dfrac{a}{b}$ is irreducible, since $a$ and $b$ would share the (non-trivial) c
 This means that $\sqrt{2}$ is not rational.
 \end{proof}
 
+\newpage
+
+\section*{Bonus: Odd Squares}
+
+\begin{theorem}
+    Let $n \in \mathbb{Z}$. If $n$ is odd, then $n^{2}$ is also odd.
+\end{theorem}
+
+\begin{proof}
+Since $n$ is odd, there exists an integer $k$ such that
+\[
+    n = 2k + 1.
+\]
+Squaring both sides gives
+\[
+    n^{2} = (2k+1)^{2} = 4k^{2} + 2(2k)(1) + 1^{2} = 4k^{2} + 4k + 1 = 2\!\left(2k^{2} + 2k\right) + 1.
+\]
+Setting $m = 2k^{2} + 2k \in \mathbb{Z}$, this simplifies to
+\[
+    n^{2} = 2m + 1,
+\]
+hence $n^{2}$ is odd.
+\end{proof}
+
 \end{document}
