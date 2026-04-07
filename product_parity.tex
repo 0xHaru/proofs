@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+
+% ---------- Theorem environments ----------
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+
+% ---------- Document ----------
+\begin{document}
+
+\title{\textbf{Products of Integers of Equal Parity}}
+\author{0xHaru}
+\date{\today}
+\maketitle
+
+\begin{definition}[Even integer]
+    For $n \in \mathbb{Z}$, $n$ is \emph{even} if and only if
+    \[
+        \exists\, k \in \mathbb{Z} : n = 2k.
+    \]
+\end{definition}
+
+\begin{theorem}
+    For all $n, m \in \mathbb{Z}$, if $n$ and $m$ are even, then $n \cdot m$ is even.
+\end{theorem}
+
+\begin{proof}
+    Since $n$ and $m$ are even, there exist $i, j \in \mathbb{Z}$ such that
+    \[
+        n = 2i \quad \text{and} \quad m = 2j.
+    \]
+    Then
+    \[
+        n \cdot m = 2i \cdot 2j = 2(2ij).
+    \]
+
+    \medskip
+
+    Let $k = 2ij$. Since $i, j \in \mathbb{Z}$ and $\mathbb{Z}$ is closed under
+    multiplication, $k \in \mathbb{Z}$.
+    Hence there exists $k \in \mathbb{Z}$ such that $n \cdot m = 2k$, so by
+    definition $n \cdot m$ is even.
+\end{proof}
+
+
+\bigskip
+
+\begin{definition}[Odd integer]
+    For $n \in \mathbb{Z}$, $n$ is \emph{odd} if and only if
+    \[
+        \exists\, k \in \mathbb{Z} : n = 2k + 1.
+    \]
+\end{definition}
+
+\begin{theorem}
+    For all $n, m \in \mathbb{Z}$, if $n$ and $m$ are odd, then $n \cdot m$ is odd.
+\end{theorem}
+
+\begin{proof}
+    Since $n$ and $m$ are odd, there exist $i, j \in \mathbb{Z}$ such that
+    \[
+        n = 2i + 1 \quad \text{and} \quad m = 2j + 1.
+    \]
+    Then
+    \[
+        n \cdot m = (2i + 1)(2j + 1) = 4ij + 2i + 2j + 1 = 2(2ij + i + j) + 1.
+    \]
+
+    \medskip
+
+    Let $k = 2ij + i + j$. Since $i, j \in \mathbb{Z}$ and $\mathbb{Z}$ is closed under
+    multiplication and addition, $k \in \mathbb{Z}$.
+    Hence there exists $k \in \mathbb{Z}$ such that $n \cdot m = 2k + 1$, so by
+    definition $n \cdot m$ is odd.
+\end{proof}
+
+\end{document}

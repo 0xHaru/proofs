@@ -1,0 +1,58 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}
+
+\title{\textbf{Irrationality of $\sqrt{2}$}}
+\author{0xHaru}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}
+    $\sqrt{2}$ is not rational.
+\end{theorem}
+
+\begin{proof}
+Assume, for contradiction, that $\sqrt{2}$ is a rational number, meaning that
+\[
+    \exists\, a, b \in \mathbb{Z} : \frac{a}{b} = \sqrt{2}.
+\]
+If $a$ and $b$ have a common factor, it can be eliminated. Then $\sqrt{2}$ can be
+written as an irreducible fraction $\dfrac{a}{b}$ such that $a$ and $b$ are
+\emph{coprime}, i.e.\ they have no common factor other than $1$. This additionally
+means that at least one of $a$ or $b$ must be odd.
+
+It follows that
+\[
+    \frac{a^{2}}{b^{2}} = 2 \qquad \text{and therefore} \qquad a^{2} = 2b^{2}.
+\]
+Hence $a^{2}$ is even, because it equals $2b^{2}$, which is necessarily even as it
+is two times another integer. Since squares of odd integers are never even, it
+follows that $a$ itself must be even.
+
+Because $a$ is even, there exists an integer $k$ such that $a = 2k$. Substituting
+into $a^{2} = 2b^{2}$ gives
+\[
+    2b^{2} = a^{2} = (2k)^{2} = 4k^{2} \implies b^{2} = 2k^{2}.
+\]
+It follows that $b^{2}$ is also even, which in turn means that $b$ is even.
+
+\medskip
+
+So $a$ and $b$ are both even, but this contradicts the assumption that
+$\dfrac{a}{b}$ is irreducible, since $a$ and $b$ would share the (non-trivial) common factor $2$.
+
+\medskip
+
+This means that $\sqrt{2}$ is not rational.
+\end{proof}
+
+\end{document}

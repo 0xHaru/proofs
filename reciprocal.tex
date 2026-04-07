@@ -1,0 +1,104 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{titlesec}
+
+\geometry{margin=2.5cm}
+
+% Custom theorem/definition styles
+\newtheoremstyle{propertystyle}
+  {10pt}{10pt}{\normalfont}{0pt}{\bfseries}{.}{.5em}{}
+
+\theoremstyle{propertystyle}
+\newtheorem{property}{Property}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+
+\title{\textbf{Why Dividing by a Fraction Means Multiplying by Its Reciprocal}}
+\author{0xHaru}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{property}[Invariant Property]
+  Multiplying or dividing both the dividend and the divisor by the same
+  non-zero number leaves the quotient unchanged.
+\end{property}
+
+\noindent Formally, for all $a, b, k \in \mathbb{Z}$ with $b \neq 0$ and $k \neq 0$:
+\[
+  \frac{a}{b} = \frac{a \cdot k}{b \cdot k} = \frac{a / k}{b / k}
+\]
+
+\begin{definition}[Neutral Element]
+  The neutral element of division is $1$.
+\end{definition}
+
+\noindent That is, for any $a \in \mathbb{Z}$:
+\[
+  \frac{a}{1} = a
+\]
+
+\begin{theorem}
+  Dividing any number by a fraction is equivalent to multiplying that number
+  by the reciprocal of the fraction. That is, for all $a, c, d \in \mathbb{Z}$
+  with $c \neq 0$ and $d \neq 0$:
+  \[
+    \dfrac{a}{\;\dfrac{c}{d}\;} = a \cdot \dfrac{d}{c}
+  \]
+\end{theorem}
+
+\begin{proof}
+Let $a, c, d \in \mathbb{Z}$, with $c \neq 0$ and $d \neq 0$, so that
+$\dfrac{c}{d}$ is a well-defined, non-zero fraction.
+
+\medskip
+\noindent We apply the \textbf{Invariant Property of Division}: multiplying both the
+dividend and the divisor by the same non-zero number does not change the quotient.
+Here we choose to multiply both by $\dfrac{d}{c}$, the reciprocal of the
+divisor $\dfrac{c}{d}$:
+
+\[
+  \dfrac{\;a\;}{\;\dfrac{c}{d}\;}
+  \;=\;
+  \dfrac{\;a \cdot \dfrac{d}{c}\;}
+        {\;\dfrac{c}{d} \cdot \dfrac{d}{c}\;}
+  \;=\;
+  \dfrac{\;a \cdot \dfrac{d}{c}\;}
+        {\;1\;}
+  \;=\;
+  a \cdot \dfrac{d}{c}
+\]
+
+\medskip
+\noindent The key step is that $\dfrac{c}{d} \cdot \dfrac{d}{c} = \dfrac{cd}{dc} = 1$,
+since a fraction multiplied by its reciprocal always equals $1$ (the neutral element
+of division). The result follows immediately.
+\end{proof}
+
+\newtheorem{corollary}{Corollary}
+\begin{corollary}
+  Dividing a fraction by a second fraction is equivalent to multiplying the
+  first by the reciprocal of the second. For all $a, b, c, d \in \mathbb{Z}$
+  with $b \neq 0$, $c \neq 0$, and $d \neq 0$:
+  \[
+    \dfrac{\;\dfrac{a}{b}\;}{\;\dfrac{c}{d}\;}
+    \;=\;
+    \dfrac{a}{b} \cdot \dfrac{d}{c}
+  \]
+\end{corollary}
+
+\begin{proof}
+  This follows directly from Theorem~1 by setting $a \leftarrow \dfrac{a}{b}$.
+\end{proof}
+
+\end{document}
