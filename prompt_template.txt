@@ -1,0 +1,23 @@
+I've attached a handwritten note where I prove ...
+
+I want you to:
+
+* Check that the proof is correct and formal
+* Make improvements where deemed necessary
+* Write it in Latex
+
+Feel free to format it the best you can but make sure to include everything
+that I wrote down.
+
+---
+
+I've attached some handwritten notes where I prove ...
+
+I want you to:
+
+* Check that the proof is correct and formal
+* Make improvements where deemed necessary
+* Write it in Latex
+
+Feel free to format them the best you can but make sure to include everything
+that I wrote down.
