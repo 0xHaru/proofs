@@ -35,7 +35,7 @@
 A \emph{sequence} is a function from a subset of the set of integers
 (usually either the set $\{0, 1, 2, \ldots\}$ or the set $\{1, 2, 3, \ldots\}$)
 to a set $S$. We use the notation $a_n$ to denote the image of the integer $n$.
-We call $a_n$ a \emph{term} of the sequence.
+We call $a_n$ a \emph{term} of the sequence and we use the notation $\{a_n\}$ to refer to the sequence itself.
 \end{definition}
 
 \begin{definition}[Recurrence Relation]
@@ -60,7 +60,7 @@ its initial conditions uniquely determine the sequence, as one can prove by
 % ============================================================
 
 The Tower of Hanoi is a classic puzzle consisting of three pegs --- $P_1$,
-$P_2$, and $P_3$ --- and a stack of $n$ disks of decreasing size, all initially
+$P_2$, $P_3$ --- and a stack of $n$ disks of decreasing size, all initially
 placed on $P_1$. The goal is to move the entire stack to $P_3$, subject to two
 rules: only one disk may be moved at a time, and no disk may ever be placed on
 top of a smaller one.
@@ -155,6 +155,10 @@ Applying the recurrence relation starting from the initial condition:
 
 We begin to see the pattern:
 \[
+  H_k = 2^{k-1} + 2^{k-2} + \cdots + 2 + 1.
+\]
+Replacing $k$ with the general index $n$ gives the closed form:
+\[
   H_n = 2^{n-1} + 2^{n-2} + \cdots + 2 + 1.
 \]
 
@@ -173,6 +177,19 @@ We can reach the same conclusion by unrolling $H_n$ directly:
       &= 2^{n-1} H_1 + 2^{n-2} + 2^{n-3} + \cdots + 2 + 1 \\
       &= 2^{n-1} + 2^{n-2} + \cdots + 2 + 1.
 \end{align*}
+
+The pattern after $k$ substitutions is always
+\[
+  H_n = 2^k H_{n-k} + 2^{k-1} + 2^{k-2} + \cdots + 2 + 1.
+\]
+We stop when the subscript reaches $1$, i.e.\
+when $n - k = 1$, giving $k = n - 1$. Substituting:
+\[
+  H_n = 2^{n-1} H_1 + 2^{n-2} + \cdots + 2 + 1 = 2^{n-1} + 2^{n-2} + \cdots + 2 + 1,
+\]
+where the last equality uses $H_1 = 1$.
+
+\medskip
 
 We have reached the same conclusion by both approaches.
 The expression on the right is a \emph{geometric series}.
