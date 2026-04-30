@@ -30,7 +30,7 @@ or $k = n/d$ is less than or equal to $\sqrt{n}$.
 \end{lemma}
 
 \begin{proof}[Proof 1 (by contradiction)]
-Since $d$ divides $n$, there exists an integer $k$ such that $d \cdot k = n$.
+Since $d$ divides $n$, there exists a natural number $k$ such that $d \cdot k = n$.
 
 Suppose for contradiction that \emph{both} $d$ and $k$ are strictly greater
 than $\sqrt{n}$:
@@ -48,7 +48,7 @@ or $k \leq \sqrt{n}$ must hold.
 \smallskip
 
 \begin{proof}[Proof 2 (direct)]
-Since $d$ divides $n$, there exists an integer $k = n/d$ such that
+Since $d$ divides $n$, there exists a natural number $k = n/d$ such that
 $d \cdot k = n$.  We consider two cases.
 
 \medskip
@@ -194,21 +194,16 @@ $|S_1| = |S_3|$.
 \bigskip
 \noindent\textbf{Step 2: Bounding $|S_1|$.}
 
-Let $A(n) := |S_1|$.  Using $|S_1| = |S_3|$, we rewrite the divisor count as
+Using $|S_1| = |S_3|$, we rewrite the divisor count as
 \[
-    d(n) = A(n) + |S_2| + A(n).
+    d(n) = |S_1| + |S_2| + |S_1|.
 \]
-By definition, $A(n)$ counts all naturals in $S_1$, each of which satisfies
-$d < \sqrt{n}$.  The number of positive integers strictly less than $\sqrt{n}$
-is at most $\lfloor\sqrt{n}\rfloor$, and $\lfloor\sqrt{n}\rfloor < \sqrt{n}$
-always holds.\footnote{%
-  If $n$ is not a perfect square then $\sqrt{n}$ is irrational, so
-  $\lfloor\sqrt{n}\rfloor < \sqrt{n}$ directly.
-  If $n$ is a perfect square, the positive integers strictly less than
-  $\sqrt{n}$ number at most $\sqrt{n}-1 < \sqrt{n}$.}
-Therefore
+Since $S_1$ consists of distinct naturals all strictly less than $\sqrt{n}$,
+its elements are among $\{1, 2, \ldots, m\}$ where $m < \sqrt{n}$ is the
+largest such natural (if $S_1 = \varnothing$, i.e.\ $n = 1$, then
+$|S_1| = 0 < 1 = \sqrt{n}$ trivially); hence
 \[
-    A(n) < \sqrt{n}.
+    |S_1| \leq m < \sqrt{n}.
 \]
 
 % -----------------------------------------------------------
@@ -223,7 +218,7 @@ We distinguish two cases.
 $\sqrt{n} \notin \mathbb{N}$, so no divisor of $n$ can equal $\sqrt{n}$; hence
 $S_2 = \varnothing$ and $|S_2| = 0$.  Therefore
 \[
-    d(n) = A(n) + 0 + A(n) = 2A(n) < 2\sqrt{n}.
+    d(n) = |S_1| + 0 + |S_1| = 2|S_1| < 2\sqrt{n}.
 \]
 
 \medskip
@@ -233,10 +228,12 @@ $\sqrt{n} \in \mathbb{N}$ and $\sqrt{n}$ divides $n$ (since
 $\sqrt{n} \cdot \sqrt{n} = n$).  Thus $S_2$ contains exactly one element,
 namely $\sqrt{n}$, so $|S_2| = 1$.  Therefore
 \[
-    d(n) = A(n) + 1 + A(n) = 2A(n) + 1 < 2\sqrt{n} + 1.
+    d(n) = |S_1| + 1 + |S_1| = 2|S_1| + 1 < 2\sqrt{n} + 1.
 \]
-Since $n$ is a perfect square both $d(n)$ and $2\sqrt{n}$ are integers, so
-the strict inequality with $2\sqrt{n}+1$ is equivalent to
+Since $n$ is a perfect square, $2\sqrt{n} \in \mathbb{N}$, so $d(n) < 2\sqrt{n}+1$
+tightens to\footnote{For any two integers $a$ and $b$, $a < b + 1 \Leftrightarrow a \leq b$,
+since there is no integer strictly between $b$ and $b+1$. Note that this would
+fail for reals: $a = b + 0.5$ satisfies $a < b+1$ but not $a \leq b$.}
 \[
     d(n) \leq 2\sqrt{n}.
 \]
